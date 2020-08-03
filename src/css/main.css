@@ -1,0 +1,9 @@
+body {
+  background-color: #000;
+}
+
+.search-result li {
+  background-color: rgb(16, 25, 56);
+  color: #fff;
+  cursor: pointer;
+}

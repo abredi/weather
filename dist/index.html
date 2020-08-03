@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Weather</title>
+    <link href="style.css" rel="stylesheet">
+  </head>
+
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <main class="bg-white flex flex-col w-1/2 p-4">
+  
+      <div class="w-full">
+        <input type="search" oninput='fetchCities(this)' placeholder="Search City" name="searchCity"
+          class="w-full border border-gray-400 p-2 outline-none">
+        <ul class="p-2 divide-y divide-blue-100">
+          <li>Addis Ababa</li>
+          <li>Adama</li>
+          <li>Mekelle</li>
+        </ul>
+      </div>
+  
+      <div class="flex flex-row justify-center my-4">
+        <div class="flex flex-col justify-start items-end mx-auto">
+          <h1 class="font-bold text-3xl mx-1 mb-2 leading-none">Addis Ababa</h1>
+          <div class="text-xs uppercase">
+            Temperature
+            <span class="text-light">
+              23 <sup class="text-red-500">o</sup>C
+            </span>
+          </div>
+          <div class="text-xs my-2 uppercase">
+            Humidity
+            <span class="text-light">
+              13 <sup class="text-red-500">o</sup>C
+            </span>
+          </div>
+        </div>
+  
+        <div class="bg-gray-300 border border-gray-200 h-32 w-64">
+          Image
+        </div>
+      </div>
+    </main>
+
+    <script src="bundle.js"></script>
+  </body>
+
+</html>

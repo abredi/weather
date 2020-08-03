@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+  </head>
+
+  <body class="bg-gray-100 flex items-center justify-center min-h-screen">
+    <main class="bg-white flex flex-col w-full p-4">
+
+      <div class="w-full">
+        <input type="search" oninput='globalSearch(this.value)' placeholder="Search City" name="searchCity" class="w-full font-thin border border-gray-400 p-2 outline-none">
+        <ul class="p-2 divide-y divide-blue-100 search-result">
+          
+        </ul>
+      </div>
+
+      <div class="flex flex-row justify-around my-4">
+        <div class="flex flex-col justify-start items-start">
+          <h2>
+            12
+            <sup class="text-red-500">o</sup>C
+          </h2>
+          <p>Cloudy</p>
+
+          <ul class="flex justify-between divide-x-2 divide-x divide-gray-400">
+            <li class="text-xs uppercase text-center w-32">
+              <h2>Temperature</h2>
+              <span class="text-light">
+                23 <sup class="text-red-500">o</sup>C
+              </span>
+            </li>
+
+            <li class="text-xs uppercase w-32 text-center">
+              <h2>Humidity</h2>
+              <span class="text-light">
+                13 <sup class="text-red-500">o</sup>C
+              </span>
+            </li>
+          </ul>
+        </div>
+       
+        <div class="bg-gray-300 border border-gray-200 h-32 w-64">
+          <h1 class="font-bold text-3xl mb-2 leading-none">Addis Ababa</h1>
+          Image
+        </div>
+      </div>
+
+    </main>
+  </body>
+
+</html>
