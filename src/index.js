@@ -1,23 +1,26 @@
 import './css/tailwind.css';
 import './css/main.css';
 import DATA from "./resource";
-
-
-
-// window.document.getElementsByTagName('button')[0].addEventListener('click', fetchCities);
-
-// function fetchCities(inp) {
-//   console.log('successfully configured', inp);
-//   fetch('../city.list.json').then(resp => {
-//     console.log(resp);
-//     console.log(inp);
-//   });
-// }  
+import KEY from "../key";
 
 (function () {
   window.filtered = [];
   const searchResult = document.querySelector('.search-result');
-  
+
+  fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=33.441792&lon=-94.037689&exclude=hourly,daily,minutely&appid=${KEY}`)
+    .then(res => res.json())
+    .then(
+      (result) => {
+        console.log('current weather', result.current)
+      },
+      (error) => {
+        this.setState({
+          isLoaded: true,
+          error
+        });
+      }
+    );
+
   fetch('city.json').then((resp) => {
     console.log('resp', resp);
   }, _ => {
@@ -52,3 +55,17 @@ import DATA from "./resource";
     });
   }
 })();
+
+
+
+
+
+// window.document.getElementsByTagName('button')[0].addEventListener('click', fetchCities);
+
+// function fetchCities(inp) {
+//   console.log('successfully configured', inp);
+//   fetch('../city.list.json').then(resp => {
+//     console.log(resp);
+//     console.log(inp);    
+//   });
+// }  
