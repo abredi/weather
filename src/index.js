@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import './css/tailwind.css';
 import './css/main.css';
 import DATA from "./resource";
@@ -69,3 +70,17 @@ import KEY from "../key";
 //     console.log(inp);    
 //   });
 // }  
+=======
+import './css/vendor/tailwind.vendor.css';
+import './css/style.css';
+import greetingModule from "./dom";
+
+const init = () => {
+  const gm = greetingModule();
+  const mainContent = document.getElementById('content');
+  mainContent.classList.add(...['flex', 'justify-center'])
+  mainContent.appendChild(gm.createGreeting('Hello World'));
+};
+
+init();
+>>>>>>> a6765061a72f02f58be690be4051c4b30d369fee

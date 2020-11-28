@@ -1,8 +1,23 @@
+const envConf = require('./webpack_config_utils/eviroment');
 const tailwindcss = require('tailwindcss');
+let postCssPlugins = [
+  tailwindcss('./tailwind.config.js'),
+  require('autoprefixer'),
+];
+
+if (envConf.getEnv() === envConf.ENV.PRODUCTION) {
+  postCssPlugins = [
+    ...postCssPlugins,
+    require('@fullhuman/postcss-purgecss')({
+      content: ['./src/*.html', './src/**/*.js'],
+      defaultExtractor: (content) => content.match(/[A-Za-z0-9-_:/]+/g) || [],
+    }),
+    require('cssnano')({
+      preset: 'default',
+    }),
+  ];
+}
 
 module.exports = {
-  plugins: [
-    tailwindcss('./tailwind.config.js'),
-    require('autoprefixer'),
-  ]
-}
+  plugins: [...postCssPlugins],
+};

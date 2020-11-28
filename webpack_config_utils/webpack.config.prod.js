@@ -1,9 +1,6 @@
-const zlib = require('zlib');
-const glob = require('glob');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
-const CompressionPlugin = require("compression-webpack-plugin");
-const PurgecssPlugin = require('purgecss-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 
@@ -16,18 +13,30 @@ module.exports = {
       {
         test: /\.s?css/,
         use: ExtractTextPlugin.extract({
-          fallback: "style-loader",
-          use: ["css-loader", "postcss-loader"],
-        })
-      }
-    ]
+          fallback: 'style-loader',
+          use: ['css-loader', 'postcss-loader'],
+        }),
+      },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
   },
   plugins: [
-    new ExtractTextPlugin("style.css"),
-    new UglifyJsPlugin({
-      sourceMap: true
+    new ExtractTextPlugin('style.min.css'),
+    new TerserPlugin({
+      parallel: true,
+      terserOptions: {
+        ecma: 6,
+      },
     }),
-
     new CompressionPlugin({
       filename: '[path].br[query]',
       algorithm: 'brotliCompress',
@@ -40,13 +49,9 @@ module.exports = {
       deleteOriginalAssets: false,
     }),
 
-    new PurgecssPlugin({
-      paths: glob.sync(`${appPath.ENTRY_SRC}/**/*`, { nodir: true }),
-    }),
-
     new HtmlPlugin({
-      title: 'Weather',
-      template: `${appPath.ENTRY_SRC}/template.html`
+      title: 'Webpack-init',
+      template: `${appPath.ENTRY_SRC}/template.html`,
     }),
 
     new OptimizeCssAssetsPlugin({
@@ -58,4 +63,4 @@ module.exports = {
       },
     }),
   ],
-}
+};

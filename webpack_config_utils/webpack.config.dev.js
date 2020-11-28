@@ -1,38 +1,28 @@
-const appPath = require('./common.path');
-const PurgecssPlugin = require('purgecss-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-const glob = require('glob');
+const appPath = require('./common.path');
 
 module.exports = {
   mode: 'development',
   devServer: {
     contentBase: appPath.OUTPUT,
     compress: true,
-    port: 3001,
-    // hot: true
+    port: 3000,
+    watchContentBase: true,
+    // hot: true,
   },
   module: {
     rules: [
       {
         test: /\.s?css$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-          'postcss-loader'
-        ]
-      }
-    ]
+        use: ['style-loader', 'css-loader', 'sass-loader', 'postcss-loader'],
+      },
+    ],
   },
 
   plugins: [
-    new PurgecssPlugin({
-      paths: glob.sync(`${appPath.ENTRY_SRC}/**/*`, { nodir: true }),
-    }),
-
     new HtmlPlugin({
-      title: 'Weather',
-      template: `${appPath.ENTRY_SRC}/template.html`
+      title: 'Webpack-init',
+      template: `${appPath.ENTRY_SRC}/template.html`,
     }),
-  ]
-}
+  ],
+};
