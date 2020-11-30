@@ -1,0 +1,36 @@
+@mixin icon($svg) {
+  background-image: $svg;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.bg-img-lighter {
+  background-image: url('../img/light.jpg');
+  background-position: center;
+  background-origin: border-box;    
+}
+
+.up-arrow {
+  @include icon(url('../img/up-arrow.svg'));
+}
+
+.down-arrow {
+  @include icon(url('../img/down-arrow.svg'));
+}
+
+
+.img-01n {
+  @include icon(url('../img/01n.svg'));
+}
+
+.img-03d {
+  @include icon(url('../img/03d_lg.svg'));
+}
+
+.i-01n {
+  @include icon(url('../img/01n.svg'));
+}
+
+.i-03d {
+  @include icon(url('../img/03d.svg'));
+}
