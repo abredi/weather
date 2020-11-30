@@ -1,0 +1,5 @@
+.bg-img-lighter {
+  background-image: url('../img/light.jpg');
+  background-position: center;
+  background-origin: border-box;    
+}
