@@ -46,5 +46,6 @@
     "webpack-merge": "^4.2.2"
   },
   "dependencies": {
+    "date-fns": "^2.16.1"
   }
 }
