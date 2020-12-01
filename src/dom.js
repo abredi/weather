@@ -28,8 +28,8 @@ const weatherUIModule = () => {
     return span;
   };
 
-  const createCardTop = (content = { icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }) => {
-    const card = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3']);
+  const createCardTop = (content = { id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }) => {
+    const card = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3'], {data: content.id});
     const cardTopContainer = createElem('div', ['flex', 'items-center', 'justify-center']);
     const cardTop = createElem('div', ['flex', 'flex-col', 'bg-white', 'rounded', 'p-4', 'w-full', 'max-w-xs']);
     const cardTopTitle = createElem('div', ['font-bold', 'text-xl']);
@@ -61,15 +61,15 @@ const weatherUIModule = () => {
 
     const cardTopFooter = createElem('div', ['flex', 'flex-row', 'justify-between', 'mt-6']);
     [
-      { name: 'Visibility', val: content.visibility },
-      { name: 'Humidity', val: content.humidity },
-      { name: 'Wind', val: `${content.windDeg} / ${content.windSpeed}` }
+      { name: 'Humidity', val: `${content.humidity}%` },
+      { name: 'Visibility', val: `${Math.floor(content.visibility / 1000)}km` },
+      { name: 'Wind', val: `${content.windDeg} / ${(content.windSpeed ).toFixed(2)}mph` }
     ].forEach(item => {
       const cardTopFooterContent = createElem('div', ['flex', 'flex-col', 'items-center']);
       const cardTopFooterContentTitle = createElem('div', ['font-medium', 'text-sm']);
       const cardTopFooterContentValue = createElem('div', ['flex', 'text-sm', 'text-gray-500']);
       cardTopFooterContentTitle.innerText = item.name;
-      cardTopFooterContentTitle.innerText = item.val;
+      cardTopFooterContentValue.innerText = item.val;
       cardTopFooterContent.appendChild(cardTopFooterContentTitle);
       cardTopFooterContent.appendChild(cardTopFooterContentValue);
       cardTopFooter.appendChild(cardTopFooterContent);
@@ -85,13 +85,15 @@ const weatherUIModule = () => {
     cardTopBody.appendChild(cardTopBodyHeading);
     cardTopBody.appendChild(cardTopBodyContent);
     cardTop.appendChild(cardTopBody);
+    cardTop.appendChild(cardTopFooter);
     cardTopContainer.appendChild(cardTop);
     card.appendChild(cardTopContainer);
+    
     return card;
   };
 
-  const createCard = (content = { icon: 'icon.svg', city: 'Amesterdam', temp: 23, temp_min: 0, temp_max: 0, desc: 'Clear Sky' }) => {
-    const card = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3']);
+  const createList = (content = { icon: 'icon.svg', city: 'Amesterdam', temp: 23, temp_min: 0, temp_max: 0, desc: 'Clear Sky' }) => {
+    const list = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3']);
     const cityImg = createElem('div', ['col-span-12', 'block', 'w-full', 'h-32', 'bg-img-lighter']);
     const cardHeader = createElem('div', ['flex', 'flex-row', 'shadow-sm', 'rounded', 'p-4']);
     const cardIconWrapper = createElem('div', ['flex', 'items-center', 'justify-center', 'flex-shrink-0', 'h-12', 'w-12', 'rounded-xl', 'bg-blue-100', 'text-blue-500']);
@@ -104,19 +106,19 @@ const weatherUIModule = () => {
     const headerSideDesc = createElem('div', ['text-sm', 'flex', 'items-center', 'text-blue-400']);
     headerSideDesc.innerText = content.desc;
 
-    card.appendChild(cityImg);
+    list.appendChild(cityImg);
     cardIconWrapper.appendChild(cardIcon)
     cardTitle.appendChild(city);
     cardTitle.appendChild(temp);
     cardHeader.appendChild(cardIconWrapper);
     cardHeader.appendChild(cardTitle);
     cardHeader.appendChild(headerSideDesc);
-    card.appendChild(cityImg);
-    card.appendChild(cardHeader);
+    list.appendChild(cityImg);
+    list.appendChild(cardHeader);
     /**
      * @todo card footer
      */
-    return card;
+    return list;
   };
 
   const displayMultipleCity = () => {
@@ -125,11 +127,12 @@ const weatherUIModule = () => {
 
     weatherData.list.forEach(data => {
       content.appendChild(createCardTop({
+        id: data.id,    
         city: data.name,
         date: data.dt,
         visibility: data.visibility,
         windDeg: data.wind.deg,
-        windSpeed: data.wind.deg,
+        windSpeed: data.wind.speed,
         temp: data.main.temp,
         temp_min: data.main.temp_min,
         temp_max: data.main.temp_max,
@@ -142,7 +145,7 @@ const weatherUIModule = () => {
 
   };
 
-  return { createCard, displayMultipleCity }
+  return { createList, displayMultipleCity }
 }
 
 export { weatherUIModule as default };
