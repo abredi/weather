@@ -5,9 +5,12 @@ import domModule from "./dom";
 const init = () => {
   const dm = domModule();
   dm.displayMultipleCity();
-  // const mainContent = document.getElementById('content');
-  // mainContent.classList.add(...['flex', 'justify-center'])
-  // mainContent.appendChild(gm.createGreeting('Hello World'));
+
+  document.getElementById('unitToggle')
+    .addEventListener('click', dm.unitToggler);
 };
 
-init();
+document.addEventListener('DOMContentLoaded', () => {
+  init();
+});
+

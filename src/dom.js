@@ -1,8 +1,11 @@
 import format from 'date-fns/format';
 import { createElem } from "./util.dom";
+import localModule from "./storage/local";
 import apiModule from "./api";
 const weatherUIModule = () => {
   const api = apiModule();
+  const ls = localModule();
+
   const getWithSup = (temp) => {
     const span = createElem('span');
     const sup = createElem('sup');
@@ -23,9 +26,14 @@ const weatherUIModule = () => {
      * @todo
      * get selected unit from the local storage
      */
+    // ls.getStatus();
     span.innerText = temp;
     span.appendChild(sup);
     return span;
+  };
+
+  const unitToggler = (event) => {
+      ls.setStatus(event.target.checked || false);
   };
 
   const createCardTop = (content = { id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }) => {
@@ -145,7 +153,7 @@ const weatherUIModule = () => {
 
   };
 
-  return { createList, displayMultipleCity }
+  return { createList, displayMultipleCity, unitToggler }
 }
 
 export { weatherUIModule as default };
