@@ -1,5 +1,7 @@
-const clearContent = () => {
-  const content = document.getElementById('content');
+const clearContent = (selector = '') => {
+  const content = selector === '' ?
+    document.getElementById('content') :
+    document.querySelector(selector);
   while (content.firstChild) {
     content.removeChild(content.firstChild);
   }
@@ -18,7 +20,7 @@ const createElem = (elemName, classes = [], attrs = '', eventListner = null) => 
 
     Object.entries(attrs).forEach(a => {
       elem.setAttribute(a[0], a[1]);
-    }); 
+    });
   }
   if (eventListner) {
     elem.addEventListener('click', eventListner);

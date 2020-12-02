@@ -8,6 +8,7 @@ const init = () => {
 
   document.getElementById('unitToggle')
     .addEventListener('click', dm.unitToggler);
+  
 };
 
 document.addEventListener('DOMContentLoaded', () => {

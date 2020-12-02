@@ -1,27 +1,24 @@
 import format from 'date-fns/format';
-import { createElem } from "./util.dom";
+import { clearContent, createElem } from "./util.dom";
 import localModule from "./storage/local";
 import apiModule from "./api";
 const weatherUIModule = () => {
   const api = apiModule();
   const ls = localModule();
 
-  const getWithSup = (temp) => {
-    const span = createElem('span');
+  const getWithSup = (kelvin) => {
+    const span = createElem('span', [], {region: 'temp', data: kelvin});
     const sup = createElem('sup');
     sup.innerText = 'o';
-    /**
-     * @todo
-     * get selected unit from the local storage
-     */
-    const celcius = temp - 273.15;
-    span.innerHTML = `${Math.floor(celcius)}<sup>o</sup>C`;
+    const status = ls.getStatus();
+    const deg =  status ? ((kelvin - 273.15) * 9/5 + 32) : (kelvin - 273.15);
+    span.innerHTML = `${Math.floor(deg)}<sup>o</sup>${status ? 'F' : 'C'}`;
     return span;
   };
 
   const getTemp = (temp) => {
     const span = createElem('span', ['font-bold', 'text-lg', 'text-gray-600']);
-    const sup = createElem('sup', []);
+    const sup = createElem('sup');
     /**
      * @todo
      * get selected unit from the local storage
@@ -34,6 +31,14 @@ const weatherUIModule = () => {
 
   const unitToggler = (event) => {
       ls.setStatus(event.target.checked || false);
+      const elem = document.querySelectorAll('[region="temp"');
+      elem.forEach(e => {
+        const p = e.parentElement;
+         while(p.firstChild) {
+          p.removeChild(p.firstChild);
+        }
+        p.appendChild(getWithSup(e.getAttribute('data')))
+      });
   };
 
   const createCardTop = (content = { id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }) => {
