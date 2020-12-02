@@ -1,8 +1,9 @@
 import { BASE_URL } from "./constants";
+import KEY from "../key";
 
 const apiModule = () => {
   const post = async (uri = '', data = {}) => {
-    const response = await fetch(BASE_URL + uri, {
+    const response = await fetch(`${BASE_URL + uri}&appid=${KEY}`, {
       method: 'POST',
       mode: 'cors',
       cache: 'no-cache',
@@ -18,7 +19,7 @@ const apiModule = () => {
   };
 
   const get = async (uri) => {
-    const req = await fetch(BASE_URL + uri);
+    const req = await fetch(`${BASE_URL + uri}&appid=${KEY}`);
     return req.json();
   };
 

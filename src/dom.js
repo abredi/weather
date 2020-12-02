@@ -2,16 +2,17 @@ import format from 'date-fns/format';
 import { clearContent, createElem } from "./util.dom";
 import localModule from "./storage/local";
 import apiModule from "./api";
+
 const weatherUIModule = () => {
   const api = apiModule();
   const ls = localModule();
 
   const getWithSup = (kelvin) => {
-    const span = createElem('span', [], {region: 'temp', data: kelvin});
+    const span = createElem('span', [], { region: 'temp', data: kelvin });
     const sup = createElem('sup');
     sup.innerText = 'o';
     const status = ls.getStatus();
-    const deg =  status ? ((kelvin - 273.15) * 9/5 + 32) : (kelvin - 273.15);
+    const deg = status ? ((kelvin - 273.15) * 9 / 5 + 32) : (kelvin - 273.15);
     span.innerHTML = `${Math.floor(deg)}<sup>o</sup>${status ? 'F' : 'C'}`;
     return span;
   };
@@ -30,19 +31,19 @@ const weatherUIModule = () => {
   };
 
   const unitToggler = (event) => {
-      ls.setStatus(event.target.checked || false);
-      const elem = document.querySelectorAll('[region="temp"');
-      elem.forEach(e => {
-        const p = e.parentElement;
-         while(p.firstChild) {
-          p.removeChild(p.firstChild);
-        }
-        p.appendChild(getWithSup(e.getAttribute('data')))
-      });
+    ls.setStatus(event.target.checked || false);
+    const elem = document.querySelectorAll('[region="temp"');
+    elem.forEach(e => {
+      const p = e.parentElement;
+      while (p.firstChild) {
+        p.removeChild(p.firstChild);
+      }
+      p.appendChild(getWithSup(e.getAttribute('data')))
+    });
   };
 
   const createCardTop = (content = { id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }) => {
-    const card = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3'], {data: content.id});
+    const card = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3'], { data: content.id });
     const cardTopContainer = createElem('div', ['flex', 'items-center', 'justify-center']);
     const cardTop = createElem('div', ['flex', 'flex-col', 'bg-white', 'rounded', 'p-4', 'w-full', 'max-w-xs']);
     const cardTopTitle = createElem('div', ['font-bold', 'text-xl']);
@@ -76,7 +77,7 @@ const weatherUIModule = () => {
     [
       { name: 'Humidity', val: `${content.humidity}%` },
       { name: 'Visibility', val: `${Math.floor(content.visibility / 1000)}km` },
-      { name: 'Wind', val: `${content.windDeg} / ${(content.windSpeed ).toFixed(2)}mph` }
+      { name: 'Wind', val: `${content.windDeg} / ${(content.windSpeed).toFixed(2)}mph` }
     ].forEach(item => {
       const cardTopFooterContent = createElem('div', ['flex', 'flex-col', 'items-center']);
       const cardTopFooterContentTitle = createElem('div', ['font-medium', 'text-sm']);
@@ -101,7 +102,7 @@ const weatherUIModule = () => {
     cardTop.appendChild(cardTopFooter);
     cardTopContainer.appendChild(cardTop);
     card.appendChild(cardTopContainer);
-    
+
     return card;
   };
 
@@ -134,31 +135,47 @@ const weatherUIModule = () => {
     return list;
   };
 
+  const displayCard = (data) => {
+    const content = document.getElementById('content');
+
+    content.appendChild(createCardTop({
+      id: data.id,
+      city: data.name,
+      date: data.dt,
+      visibility: data.visibility,
+      windDeg: data.wind.deg,
+      windSpeed: data.wind.speed,
+      temp: data.main.temp,
+      temp_min: data.main.temp_min,
+      temp_max: data.main.temp_max,
+      pressure: data.main.pressure,
+      humidity: data.main.humidity,
+      main: data.weather[0].main,
+      icon: data.weather[0].icon
+    }));
+  };
+
   const displayMultipleCity = () => {
-    const content = document.getElementById('content')
     const weatherData = api.getJson();
 
     weatherData.list.forEach(data => {
-      content.appendChild(createCardTop({
-        id: data.id,    
-        city: data.name,
-        date: data.dt,
-        visibility: data.visibility,
-        windDeg: data.wind.deg,
-        windSpeed: data.wind.speed,
-        temp: data.main.temp,
-        temp_min: data.main.temp_min,
-        temp_max: data.main.temp_max,
-        pressure: data.main.pressure,
-        humidity: data.main.humidity,
-        main: data.weather[0].main,
-        icon: data.weather[0].icon
-      }));
+      displayCard(data);
     });
-
   };
 
-  return { createList, displayMultipleCity, unitToggler }
+  const searchByCity = async (event) => {
+    event.preventDefault();
+
+    const query = document.getElementById('q');
+    if (query && query.value !== '') {
+      const weatherData = await api.get(`weather?q=${query.value}`);
+      clearContent();
+      displayCard(weatherData);
+    }
+  };
+
+  return { createList, displayMultipleCity, searchByCity, unitToggler }
 }
 
 export { weatherUIModule as default };
+
