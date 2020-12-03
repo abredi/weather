@@ -1,7 +1,9 @@
 {
   "scripts": {
     "dev": "yarn webpack-dev-server --watch --color --env=dev",
-    "build": "yarn webpack --env=prod"
+    "build": "yarn webpack --env=prod",
+    "deploy": "gh-pages -d dist"
+
   },
   "name": "webpack-init",
   "version": "0.0.1",
