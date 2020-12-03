@@ -42,8 +42,8 @@ const weatherUIModule = () => {
     });
   };
 
-  const createCardTop = (content = { id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }) => {
-    const card = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3'], { data: content.id });
+  const createCardTop = (content = { id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }, cls = []) => {
+    const card = createElem('div', [...cls, 'col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3'], { data: content.id });
     const cardTopContainer = createElem('div', ['flex', 'items-center', 'justify-center']);
     const cardTop = createElem('div', ['flex', 'flex-col', 'bg-white', 'rounded', 'p-4', 'w-full', 'max-w-xs']);
     const cardTopTitle = createElem('div', ['font-bold', 'text-xl']);
@@ -135,7 +135,7 @@ const weatherUIModule = () => {
     return list;
   };
 
-  const displayCard = (data) => {
+  const displayCard = (data, cls = []) => {
     const content = document.getElementById('content');
 
     content.appendChild(createCardTop({
@@ -152,7 +152,7 @@ const weatherUIModule = () => {
       humidity: data.main.humidity,
       main: data.weather[0].main,
       icon: data.weather[0].icon
-    }));
+    }, cls));
   };
 
   const displayMultipleCity = async () => {
@@ -170,7 +170,7 @@ const weatherUIModule = () => {
     if (query && query.value !== '') {
       const weatherData = await api.get(`weather?q=${query.value}`);
       clearContent();
-      displayCard(weatherData);
+      displayCard(weatherData, ['sm:col-start-4', 'md:col-start-4', 'lg:col-start-5', 'lg:col-span-4', 'md:col-span-6']);
     }
   };
 
