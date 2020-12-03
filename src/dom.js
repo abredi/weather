@@ -1,6 +1,6 @@
 import format from 'date-fns/format';
 import { clearContent, createElem } from './util.dom';
-import localModule from './storage/local';
+import { localModule } from './storage/local';
 import apiModule from './api';
 
 const weatherUIModule = () => {

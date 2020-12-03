@@ -7,7 +7,7 @@
 .bg-img-lighter {
   background-image: url('../img/light.jpg');
   background-position: center;
-  background-origin: border-box;    
+  background-origin: border-box;
 }
 
 .up-arrow {
@@ -52,13 +52,15 @@
 
 .toggle-checkbox:checked {
   @apply: right-0 border-green-400;
+
   right: 0;
-  border-color: #68D391;
+  border-color: #68d391;
 }
 
 .toggle-checkbox:checked + .toggle-label {
-  @apply: bg-green-400; 
-  background-color: #68D391;
+  @apply: bg-green-400;
+
+  background-color: #68d391;
 }
 
 .img-02n {
@@ -108,4 +110,3 @@
 .img-09n {
   @include icon(url('../img/09d.svg'));
 }
-
