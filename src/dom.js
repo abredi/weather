@@ -12,21 +12,8 @@ const weatherUIModule = () => {
     const sup = createElem('sup');
     sup.innerText = 'o';
     const status = ls.getStatus();
-    const deg = status ? ((kelvin - 273.15) * 9 / 5 + 32) : (kelvin - 273.15);
+    const deg = status ? ((kelvin - 273.15) * (9 / 5) + 32) : (kelvin - 273.15);
     span.innerHTML = `${Math.floor(deg)}<sup>o</sup>${status ? 'F' : 'C'}`;
-    return span;
-  };
-
-  const getTemp = (temp) => {
-    const span = createElem('span', ['font-bold', 'text-lg', 'text-gray-600']);
-    const sup = createElem('sup');
-    /**
-     * @todo
-     * get selected unit from the local storage
-     */
-    // ls.getStatus();
-    span.innerText = temp;
-    span.appendChild(sup);
     return span;
   };
 
@@ -107,37 +94,6 @@ const weatherUIModule = () => {
     return card;
   };
 
-  const createList = (content = {
-    icon: 'icon.svg', city: 'Amesterdam', temp: 23, temp_min: 0, temp_max: 0, desc: 'Clear Sky',
-  }) => {
-    const list = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3']);
-    const cityImg = createElem('div', ['col-span-12', 'block', 'w-full', 'h-32', 'bg-img-lighter']);
-    const cardHeader = createElem('div', ['flex', 'flex-row', 'shadow-sm', 'rounded', 'p-4']);
-    const cardIconWrapper = createElem('div', ['flex', 'items-center', 'justify-center', 'flex-shrink-0', 'h-12', 'w-12', 'rounded-xl', 'bg-blue-100', 'text-blue-500']);
-    const cardIcon = createElem('i', ['w-6', 'h-6', 'block', 'h-auto', 'w-full', `i-${content.icon}`]);
-    const cardTitle = createElem('div', ['flex', 'flex-col', 'flex-grow', 'ml-4']);
-    const city = createElem('div', ['text-sm', 'text-gray-500']);
-    city.innerText = content.city;
-    const temp = createElem('div');
-    temp.appendChild(getTemp(content.temp));
-    const headerSideDesc = createElem('div', ['text-sm', 'flex', 'items-center', 'text-blue-400']);
-    headerSideDesc.innerText = content.desc;
-
-    list.appendChild(cityImg);
-    cardIconWrapper.appendChild(cardIcon);
-    cardTitle.appendChild(city);
-    cardTitle.appendChild(temp);
-    cardHeader.appendChild(cardIconWrapper);
-    cardHeader.appendChild(cardTitle);
-    cardHeader.appendChild(headerSideDesc);
-    list.appendChild(cityImg);
-    list.appendChild(cardHeader);
-    /**
-     * @todo card footer
-     */
-    return list;
-  };
-
   const displayCard = (data, cls = []) => {
     const content = document.getElementById('content');
 
@@ -160,12 +116,12 @@ const weatherUIModule = () => {
 
   const displayMultipleCity = async () => {
     const weatherData = await api.get('group?id=344979,3606250,292224,292672,1705545');
-    if (!weatherData) {
-      return false;
+    if (weatherData) {
+      weatherData.list.forEach(data => {
+        displayCard(data);
+      });
     }
-    weatherData.list.forEach(data => {
-      displayCard(data);
-    });
+    return false;
   };
 
   const searchByCity = async (event) => {
@@ -180,10 +136,11 @@ const weatherUIModule = () => {
       clearContent();
       displayCard(weatherData, ['sm:col-start-4', 'md:col-start-4', 'lg:col-start-5', 'lg:col-span-4', 'md:col-span-6']);
     }
+    return false;
   };
 
   return {
-    createList, displayMultipleCity, searchByCity, unitToggler,
+    displayMultipleCity, searchByCity, unitToggler,
   };
 };
 
