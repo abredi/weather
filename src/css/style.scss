@@ -1,3 +1,5 @@
+/** ↑
+ * At-rules like this */
 @mixin icon($svg) {
   background-image: $svg;
   background-position: center;
@@ -50,9 +52,9 @@
   @include icon(url('../img/03d.svg'));
 }
 
+/* stylelint-disable */
 .toggle-checkbox:checked {
   @apply: right-0 border-green-400;
-
   right: 0;
   border-color: #68d391;
 }
@@ -62,12 +64,13 @@
 
   background-color: #68d391;
 }
+/* stylelint-enable */
 
 .img-02n {
   @include icon(url('../img/02n.svg'));
 }
 
-.img-01d {
+.img-02d {
   @include icon(url('../img/01d.svg'));
 }
 
