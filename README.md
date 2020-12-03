@@ -1,20 +1,15 @@
 ![Hireable](https://cdn.rawgit.com/hiendv/hireable/master/styles/default/yes.svg)
 
-  <h1 align="center">Webpack Init</h1>
+  <h1 align="center">Weather App</h1>
 
   <p align="center">
-    This is an initial setup for webpack based web development. In this project we add common dev-dependencies and zero production level dependencies.  
+    The weather forecast app displays the current weather forecast. The project was developed with web technologies such as JavaScript, HTML, CSS, TailwindCSS, and Webpack for development. In this project, I used openweather.org API for retrieving real-time weather data.
   </p>
 
 ### Built in features
 
-- TailwindCSS
-- Postcss
-- Stylelint
-- ESlint
-- Treeshaking
-- Code minification
-- Compressing
+- Weather forecast
+- Search current weather forecast by city 
 
 ### Built with
 
@@ -27,7 +22,7 @@
 
 > Follow these steps to set up and run the quickstart:
   - Clone/Download this repo and open this folder in a Terminal.
-    `git clone https://github.com/abredi/webpack-init.git`
+    `git clone https://github.com/abredi/weather.git`
   - Install the Nodejs:
   [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
@@ -40,7 +35,7 @@
 
 ### Live Demo
 
-[Click here](https://abredi.github.io/webpack-init/)
+[Click here](https://abredi.github.io/weather/)
 
 ### Author
 
@@ -49,13 +44,13 @@
 - Website [azizali.ml](https://azizali.ml/)
 - Github: [@abredi](https://github.com/abredi)
 - Twitter: [@rediabdulaziz](https://twitter.com/rediabdulaziz)
-- Linkedin: [linkedin](https://www.linkedin.com/in/abdulaziz-ali-98948011a)
+- Linkedin: [linkedin](https://www.linkedin.com/in/abdulazizrediali/)
 
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/abredi/webpack-init/issues).
+Feel free to check the [issues page](https://github.com/abredi/weather/issues).
 
 ## Show your support
 
