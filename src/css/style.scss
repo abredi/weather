@@ -18,12 +18,27 @@
   @include icon(url('../img/down-arrow.svg'));
 }
 
-
 .img-01n {
   @include icon(url('../img/01n.svg'));
 }
 
+.img-01d {
+  @include icon(url('../img/01n.svg'));
+}
+
 .img-03d {
+  @include icon(url('../img/03d_lg.svg'));
+}
+
+.img-04d {
+  @include icon(url('../img/04n.svg'));
+}
+
+.img-04n {
+  @include icon(url('../img/04n.svg'));
+}
+
+.img-03n {
   @include icon(url('../img/03d_lg.svg'));
 }
 
@@ -35,9 +50,6 @@
   @include icon(url('../img/03d.svg'));
 }
 
-
-/* CHECKBOX TOGGLE SWITCH */
-/* @apply rules for documentation, these do not work as inline style */
 .toggle-checkbox:checked {
   @apply: right-0 border-green-400;
   right: 0;
@@ -45,7 +57,55 @@
 }
 
 .toggle-checkbox:checked + .toggle-label {
-  @apply: bg-green-400;
+  @apply: bg-green-400; 
   background-color: #68D391;
+}
+
+.img-02n {
+  @include icon(url('../img/02n.svg'));
+}
+
+.img-01d {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-13d {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-13n {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-50n {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-50d {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-11d {
+  @include icon(url('../img/11d.svg'));
+}
+
+.img-11n {
+  @include icon(url('../img/11d.svg'));
+}
+
+.img-10d {
+  @include icon(url('../img/10d.svg'));
+}
+
+.img-10n {
+  @include icon(url('../img/10d.svg'));
+}
+
+.img-09d {
+  @include icon(url('../img/09d.svg'));
+}
+
+.img-09n {
+  @include icon(url('../img/09d.svg'));
 }
 

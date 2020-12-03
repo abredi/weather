@@ -155,8 +155,8 @@ const weatherUIModule = () => {
     }));
   };
 
-  const displayMultipleCity = () => {
-    const weatherData = api.getJson();
+  const displayMultipleCity = async () => {
+    const weatherData = await api.get('group?id=344979,3606250,292224,292672,1705545');
 
     weatherData.list.forEach(data => {
       displayCard(data);
