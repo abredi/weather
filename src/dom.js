@@ -157,7 +157,9 @@ const weatherUIModule = () => {
 
   const displayMultipleCity = async () => {
     const weatherData = await api.get('group?id=344979,3606250,292224,292672,1705545');
-
+    if (!weatherData) {
+      return false;
+    }
     weatherData.list.forEach(data => {
       displayCard(data);
     });
@@ -169,6 +171,9 @@ const weatherUIModule = () => {
     const query = document.getElementById('q');
     if (query && query.value !== '') {
       const weatherData = await api.get(`weather?q=${query.value}`);
+      if (!weatherData) {
+        return false;
+      }
       clearContent();
       displayCard(weatherData, ['sm:col-start-4', 'md:col-start-4', 'lg:col-start-5', 'lg:col-span-4', 'md:col-span-6']);
     }
