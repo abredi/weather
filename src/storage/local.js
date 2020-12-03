@@ -14,7 +14,7 @@ export const localModule = () => {
 
   return {
     setStatus,
-    getStatus
+    getStatus,
   };
 };
 

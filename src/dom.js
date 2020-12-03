@@ -1,7 +1,7 @@
 import format from 'date-fns/format';
-import { clearContent, createElem } from "./util.dom";
-import localModule from "./storage/local";
-import apiModule from "./api";
+import { clearContent, createElem } from './util.dom';
+import localModule from './storage/local';
+import apiModule from './api';
 
 const weatherUIModule = () => {
   const api = apiModule();
@@ -38,11 +38,13 @@ const weatherUIModule = () => {
       while (p.firstChild) {
         p.removeChild(p.firstChild);
       }
-      p.appendChild(getWithSup(e.getAttribute('data')))
+      p.appendChild(getWithSup(e.getAttribute('data')));
     });
   };
 
-  const createCardTop = (content = { id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0 }, cls = []) => {
+  const createCardTop = (content = {
+    id: 0, icon: 'icon.svg', city: 'Amesterdam', temp: 0, temp_min: 0, date: Date.now(), temp_max: 0, main: 'Clear Sky', visibility: 0, windDeg: 0, windSpeed: 0, humidity: 0,
+  }, cls = []) => {
     const card = createElem('div', [...cls, 'col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3'], { data: content.id });
     const cardTopContainer = createElem('div', ['flex', 'items-center', 'justify-center']);
     const cardTop = createElem('div', ['flex', 'flex-col', 'bg-white', 'rounded', 'p-4', 'w-full', 'max-w-xs']);
@@ -62,7 +64,7 @@ const weatherUIModule = () => {
     const cardTopBodyContentTempUp = createElem('div', ['mt-1']);
     const cardTopBodyContentTempUpIcon = createElem('div', ['up-arrow', 'w-3', 'ml-1', 'h-full']);
     const cardTopBodyContentTempUpText = createElem('span', ['text-sm', 'font-light', 'text-gray-500']);
-    cardTopBodyContentTempUpText.appendChild(getWithSup(content.temp_max));;
+    cardTopBodyContentTempUpText.appendChild(getWithSup(content.temp_max));
     cardTopBodyContentTempUp.appendChild(cardTopBodyContentTempUpIcon);
     cardTopBodyContentTempUp.appendChild(cardTopBodyContentTempUpText);
     const cardTopBodyContentTempDown = createElem('div', ['flex']);
@@ -72,12 +74,11 @@ const weatherUIModule = () => {
     cardTopBodyContentTempDown.appendChild(cardTopBodyContentTempDownIconWrapper);
     cardTopBodyContentTempDown.appendChild(cardTopBodyContentTempDownText);
 
-
     const cardTopFooter = createElem('div', ['flex', 'flex-row', 'justify-between', 'mt-6']);
     [
       { name: 'Humidity', val: `${content.humidity}%` },
       { name: 'Visibility', val: `${Math.floor(content.visibility / 1000)}km` },
-      { name: 'Wind', val: `${content.windDeg} / ${(content.windSpeed).toFixed(2)}mph` }
+      { name: 'Wind', val: `${content.windDeg} / ${(content.windSpeed).toFixed(2)}mph` },
     ].forEach(item => {
       const cardTopFooterContent = createElem('div', ['flex', 'flex-col', 'items-center']);
       const cardTopFooterContentTitle = createElem('div', ['font-medium', 'text-sm']);
@@ -106,7 +107,9 @@ const weatherUIModule = () => {
     return card;
   };
 
-  const createList = (content = { icon: 'icon.svg', city: 'Amesterdam', temp: 23, temp_min: 0, temp_max: 0, desc: 'Clear Sky' }) => {
+  const createList = (content = {
+    icon: 'icon.svg', city: 'Amesterdam', temp: 23, temp_min: 0, temp_max: 0, desc: 'Clear Sky',
+  }) => {
     const list = createElem('div', ['col-span-12', 'bg-white', 'pb-2', 'sm:col-span-6', 'md:col-span-4', 'lg:col-span-3']);
     const cityImg = createElem('div', ['col-span-12', 'block', 'w-full', 'h-32', 'bg-img-lighter']);
     const cardHeader = createElem('div', ['flex', 'flex-row', 'shadow-sm', 'rounded', 'p-4']);
@@ -121,7 +124,7 @@ const weatherUIModule = () => {
     headerSideDesc.innerText = content.desc;
 
     list.appendChild(cityImg);
-    cardIconWrapper.appendChild(cardIcon)
+    cardIconWrapper.appendChild(cardIcon);
     cardTitle.appendChild(city);
     cardTitle.appendChild(temp);
     cardHeader.appendChild(cardIconWrapper);
@@ -151,7 +154,7 @@ const weatherUIModule = () => {
       pressure: data.main.pressure,
       humidity: data.main.humidity,
       main: data.weather[0].main,
-      icon: data.weather[0].icon
+      icon: data.weather[0].icon,
     }, cls));
   };
 
@@ -179,8 +182,9 @@ const weatherUIModule = () => {
     }
   };
 
-  return { createList, displayMultipleCity, searchByCity, unitToggler }
-}
+  return {
+    createList, displayMultipleCity, searchByCity, unitToggler,
+  };
+};
 
 export { weatherUIModule as default };
-

@@ -1,14 +1,14 @@
 const clearContent = (selector = '', parent = false) => {
-  let content = selector === '' ?
-    document.getElementById('content') :
-    document.querySelector(selector);
-    if (parent) {
-      content = content.parentElement;
-    }
+  let content = selector === ''
+    ? document.getElementById('content')
+    : document.querySelector(selector);
+  if (parent) {
+    content = content.parentElement;
+  }
 
-    while (content.firstChild) {
-      content.removeChild(content.firstChild);
-    }
+  while (content.firstChild) {
+    content.removeChild(content.firstChild);
+  }
 };
 
 const createElem = (elemName, classes = [], attrs = '', eventListner = null) => {
@@ -33,8 +33,8 @@ const createElem = (elemName, classes = [], attrs = '', eventListner = null) => 
 };
 
 const notification = (msg, status = false) => {
-  const area = createElem('div', [])
-  const notify = createElem('div', ['flex', 'justify-center', 'absolute', 'bottom-0', 'right-0', 'mb-4'], {id: 'notify'});
+  const area = createElem('div', []);
+  const notify = createElem('div', ['flex', 'justify-center', 'absolute', 'bottom-0', 'right-0', 'mb-4'], { id: 'notify' });
   const body = createElem('div', ['w-full', 'px-6', 'py-3', 'shadow-2xl', 'flex', 'flex-col', 'items-center',
     'border-t', 'sm:w-auto', 'sm:m-4', 'sm:rounded-lg', 'sm:flex-row',
     'sm:border', 'text-white', `bg-${status ? 'blue-600' : 'red-600'}`, `border-${status ? 'blue-600' : 'red-600'}`]);
@@ -52,7 +52,6 @@ const notification = (msg, status = false) => {
   notify.appendChild(body);
   area.appendChild(notify);
   return area;
-}
+};
 
-export { clearContent, createElem, notification }
-
+export { clearContent, createElem, notification };

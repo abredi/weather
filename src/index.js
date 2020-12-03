@@ -1,6 +1,6 @@
 import './css/vendor/tailwind.vendor.css';
 import './css/style.scss';
-import domModule from "./dom";
+import domModule from './dom';
 
 const init = () => {
   const dm = domModule();
@@ -8,12 +8,11 @@ const init = () => {
 
   document.getElementById('unitToggle')
     .addEventListener('click', dm.unitToggler);
-  
-    document.getElementById('searchForm')
+
+  document.getElementById('searchForm')
     .addEventListener('submit', dm.searchByCity);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   init();
 });
-
