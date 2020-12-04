@@ -1,18 +1,10 @@
-/** ↑
- * At-rules like this */
 @mixin icon($svg) {
   background-image: $svg;
   background-position: center;
   background-repeat: no-repeat;
 }
 
-.bg-img-lighter {
-  background-image: url('../img/light.jpg');
-  background-position: center;
-  background-origin: border-box;
-}
-
-.up-arrow {
+.uparrow {
   @include icon(url('../img/up-arrow.svg'));
 }
 
@@ -40,7 +32,7 @@
   @include icon(url('../img/04n.svg'));
 }
 
-.img-03n {
+.img-03n {  
   @include icon(url('../img/03d_lg.svg'));
 }
 
@@ -52,26 +44,24 @@
   @include icon(url('../img/03d.svg'));
 }
 
-/* stylelint-disable */
 .toggle-checkbox:checked {
-  @apply: right-0 border-green-400;
+  border-color: rgba(52, 211, 153, 1);
   right: 0;
   border-color: #68d391;
 }
 
 .toggle-checkbox:checked + .toggle-label {
-  @apply: bg-green-400;
-
+  background-color: rgba(52, 211, 153, 1);
   background-color: #68d391;
 }
-/* stylelint-enable */
+
 
 .img-02n {
   @include icon(url('../img/02n.svg'));
 }
 
 .img-02d {
-  @include icon(url('../img/01d.svg'));
+  @include icon(url('../img/02n.svg'));
 }
 
 .img-13d {

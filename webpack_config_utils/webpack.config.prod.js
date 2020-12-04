@@ -11,10 +11,10 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.s?css/,
+        test: /\.s?[ac]ss$/i,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader', 'postcss-loader'],
+          use: ['css-loader','sass-loader','postcss-loader'],
         }),
       },
       {
@@ -48,12 +48,10 @@ module.exports = {
       minRatio: 0.8,
       deleteOriginalAssets: false,
     }),
-
     new HtmlPlugin({
       title: 'Webpack-init',
       template: `${appPath.ENTRY_SRC}/template.html`,
     }),
-
     new OptimizeCssAssetsPlugin({
       cssProcessorOptions: {
         safe: true,

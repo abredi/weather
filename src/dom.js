@@ -49,7 +49,7 @@ const weatherUIModule = () => {
     const cardTopBodyContentTitle = createElem('div', ['capitalize']);
     cardTopBodyContentTitle.innerText = content.main;
     const cardTopBodyContentTempUp = createElem('div', ['mt-1']);
-    const cardTopBodyContentTempUpIcon = createElem('div', ['up-arrow', 'w-3', 'ml-1', 'h-full']);
+    const cardTopBodyContentTempUpIcon = createElem('div', ['uparrow', 'w-3', 'ml-1', 'h-full']);
     const cardTopBodyContentTempUpText = createElem('span', ['text-sm', 'font-light', 'text-gray-500']);
     cardTopBodyContentTempUpText.appendChild(getWithSup(content.temp_max));
     cardTopBodyContentTempUp.appendChild(cardTopBodyContentTempUpIcon);
