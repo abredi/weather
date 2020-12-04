@@ -32,7 +32,7 @@
   @include icon(url('../img/04n.svg'));
 }
 
-.img-03n {  
+.img-03n {
   @include icon(url('../img/03d_lg.svg'));
 }
 
@@ -47,14 +47,11 @@
 .toggle-checkbox:checked {
   border-color: rgba(52, 211, 153, 1);
   right: 0;
-  border-color: #68d391;
 }
 
 .toggle-checkbox:checked + .toggle-label {
   background-color: rgba(52, 211, 153, 1);
-  background-color: #68d391;
 }
-
 
 .img-02n {
   @include icon(url('../img/02n.svg'));
