@@ -1,6 +1,7 @@
 import BASE_URL from './constants';
 import { clearContent, notification } from './util.dom';
-import KEY from '../key';
+
+import KEY from '../key'; // eslint-disable-line
 
 const apiModule = () => {
   const handleError = (err) => {
