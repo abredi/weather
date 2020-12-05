@@ -26,6 +26,13 @@
   - Install the Nodejs:
   [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
+  - <b> Create `key.js` file and add the following code </b>
+  ```
+  const KEY = '{YOUR_OPENWEATHER_API_KEY}';
+  export default KEY;
+
+  ```
+
   - Run npm install on your terminal *be sure that you are in the project's directory*:
   `npm i`
   - Finally run a local server:
