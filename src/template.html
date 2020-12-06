@@ -1,15 +1,321 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather</title>
-  </head>
-    <body class="grid grid-layout bg-gray-200">
-      <main id="main">
-        <div id="content"></div>
-      </main>
-    </body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather</title>
+</head>
+
+<body class="grid grid-layout bg-gray-200">
+  <header class="w-full">
+    <div class="flex w-full z-10 fixed bg-gray-300 top-0 justify-between items-centers flex-row">
+      <h1 class="text-xl font-light text-gray-600 px-4 py-2">Reign Weather</h1>
+      <div class="flex items-center px-4 py-2 h-full">
+        <label for="toggle" class="text-xs text-gray-700"><sup>o</sup>C</label>
+        <div class="relative inline-block w-10 mx-2 align-middle select-none transition duration-200 ease-in">
+          <input type="checkbox" name="toggle" id="unitToggle"
+            class="toggle-checkbox outline-none absolute block 
+            w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+          <label for="toggle"
+            class="toggle-label outline-none block overflow-hidden h-6 rounded-full bg-gray-200 cursor-pointer"></label>
+        </div>
+        <label for="toggle" class="text-xs text-gray-700"><sup>o</sup>F</label>
+      </div>
+    </div>
+    <div class="py-2 mt-12 px-8 text-white flex justify-between bg-purple-900">
+      <form class="relative text-gray-600 w-full" id="searchForm">
+        <input type="search" id="q" name="serch" placeholder="Search" class="bg-white w-full h-10 px-5 pr-10 rounded-full text-sm focus:outline-none">
+        <button type="submit" class="absolute right-0 top-0 mt-3 mr-4">
+          <svg class="h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px" viewBox="0 0 56.966 56.966" style="enable-background: new 0 0 56.966 56.966;" xml:space="preserve" width="512px" height="512px">
+            <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23  s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92  c0.779,0,1.518-0.297,2.079-0.837C56.255,54.982,56.293,53.08,55.146,51.887z M23.984,6c9.374,0,17,7.626,17,17s-7.626,17-17,17  s-17-7.626-17-17S14.61,6,23.984,6z"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+  </header>
+
+  <main id="main">
+    <div>
+      <div class="flex md:mt-4 min-h-screen bg-gray-200 text-gray-800">
+        <div class="p-4 w-full">
+          <div class="grid grid-cols-12 gap-4" id="content">
+            <!-- <div class="col-span-12 bg-white pb-2 sm:col-span-6 md:col-span-4 lg:col-span-3"> -->
+              <!-- <div class="col-span-12 block  w-full h-32 bg-img-lighter"></div> -->
+              <!-- start -->
+              <!-- component -->
+              <!-- <div class="flex items-center justify-center">
+                <div class="flex flex-col bg-white rounded p-4 w-full max-w-xs">
+                  <div class="font-bold text-xl">Sydney</div>
+                  <div class="text-sm text-gray-500">Thursday 10 May 2020</div>
+                  <div
+                    class="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
+                    <svg class="w-32 h-32" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z">
+                      </path>
+                    </svg>
+                  </div>
+                  <div class="flex flex-row items-center justify-center mt-6">
+                    <div class="font-medium text-6xl">24°</div>
+                    <div class="s flex-col items-center ml-6">
+                      <div class="capitalize">Cloudy</div>
+                      <div class="mt-1">
+                        <span class="text-sm"><i class="far fa-long-arrow-up"></i></span>
+                        <span class="text-sm font-light text-gray-500">28°C</span>
+                      </div>
+                      <div>
+                        <span class="text-sm"><i class="far fa-long-arrow-down"></i></span>
+                        <span class="text-sm  font-light text-gray-500">20°C</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-row justify-between mt-6">
+                    <div class="flex flex-col items-center">
+                      <div class="font-medium text-sm">Wind</div>
+                      <div class="text-sm text-gray-500">9k/h</div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <div class="font-medium text-sm">Humidity</div>
+                      <div class="text-sm text-gray-500">68%</div>
+                    </div>
+                    <div class="flex flex-col items-center">
+                      <div class="font-medium text-sm">Visibility</div>
+                      <div class="text-sm text-gray-500">10km</div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <!-- end -->
+              <!-- <div class="flex flex-row  shadow-sm rounded p-4">
+                <div
+                  class="flex items-center justify-center flex-shrink-0 h-12 w-12 rounded-xl bg-blue-100 text-blue-500">
+                  <?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+                    xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="32" height="32"
+                    viewBox="0 0 32 32.000001" id="svg13527" version="1.1" inkscape:version="0.91 r13725"
+                    sodipodi:docname="clouds-storm-stormy-wind-windy-cloud-forecast.svg">
+                    <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
+                      inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="6.409375"
+                      inkscape:cx="-19.80476" inkscape:cy="17.964544" inkscape:document-units="px"
+                      inkscape:current-layer="layer1" showgrid="true" inkscape:window-width="1366"
+                      inkscape:window-height="716" inkscape:window-x="-8" inkscape:window-y="-8"
+                      inkscape:window-maximized="1" units="px" inkscape:object-nodes="true">
+                      <inkscape:grid type="xygrid" id="grid13559" empspacing="4" />
+                    </sodipodi:namedview>
+                    <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1"
+                      transform="translate(0,-1020.3622)">
+                      <g transform="translate(-958.07801,-2022.7884)" id="g22190-7">
+                        <g id="g22932-9">
+                          <g id="g22855-7" fill-opacity="1" stroke="none" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-miterlimit="4" stroke-dasharray="none" stroke-dashoffset="0" stroke-opacity="1">
+                            <path inkscape:connector-curvature="0" id="path13216-6-5-6"
+                              d="M983.581 3061.362a.5.5 0 1 0 0 1h1c.559 0 1 .442 1 1 0 .55-.426.996-1.003 1h-16.499c-1.099 0-2 .901-2 2 0 1.108.91 1.987 1.994 2a.5.5 0 0 0 .01 0h13.002c.558 0 1 .442 1 1a.991.991 0 0 1-1.002.996h-.998a.5.5 0 1 0 0 1h1c1.108 0 2.003-.91 1.998-2 0-1.099-.901-2-2-2h-12.996c-.565-.01-1.006-.429-1.006-1 0-.558.442-1 1-1h16.503a2.015 2.015 0 0 0 1.996-1.996c0-1.099-.902-2-2-2z"
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              color="#000" font-style="normal" font-variant="normal" font-weight="normal"
+                              font-stretch="normal" font-size="medium" font-family="sans-serif" text-decoration="none"
+                              letter-spacing="normal" word-spacing="normal" direction="ltr" writing-mode="lr-tb"
+                              baseline-shift="baseline" text-anchor="start" white-space="normal" clip-rule="nonzero"
+                              display="inline" overflow="visible" visibility="visible" opacity="1"
+                              color-interpolation="sRGB" color-interpolation-filters="linearRGB" solid-color="#000000"
+                              solid-opacity="1" fill="#7acbc9" fill-rule="evenodd" stroke-width="1px"
+                              color-rendering="auto" image-rendering="auto" shape-rendering="auto"
+                              text-rendering="auto" />
+                            <path inkscape:connector-curvature="0" id="path13216-9-9-06-6"
+                              d="M986.082 3066.363a.5.5 0 1 0 0 1c.558 0 1 .441 1 1a.991.991 0 0 1-1.002.996.5.5 0 1 0 0 1c1.108 0 2.002-.91 1.998-2 0-1.099-.901-2-2-2z"
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              color="#000" font-style="normal" font-variant="normal" font-weight="normal"
+                              font-stretch="normal" font-size="medium" font-family="sans-serif" text-decoration="none"
+                              letter-spacing="normal" word-spacing="normal" direction="ltr" writing-mode="lr-tb"
+                              baseline-shift="baseline" text-anchor="start" white-space="normal" clip-rule="nonzero"
+                              display="inline" overflow="visible" visibility="visible" opacity="1"
+                              color-interpolation="sRGB" color-interpolation-filters="linearRGB" solid-color="#000000"
+                              solid-opacity="1" fill="#7acbc9" fill-rule="evenodd" stroke-width="1px"
+                              color-rendering="auto" image-rendering="auto" shape-rendering="auto"
+                              text-rendering="auto" />
+                            <path inkscape:connector-curvature="0" id="path13216-7-2-29-6"
+                              d="M962.076 3068.362a2.005 2.005 0 0 0-1.998 2.002 2.008 2.008 0 0 0 2 1.998h5.501a.5.5 0 1 0 0-1h-5.5c-.56 0-1-.442-1-1a.993.993 0 0 1 1.001-.998.5.5 0 1 0 0-1z"
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              color="#000" font-style="normal" font-variant="normal" font-weight="normal"
+                              font-stretch="normal" font-size="medium" font-family="sans-serif" text-decoration="none"
+                              letter-spacing="normal" word-spacing="normal" direction="ltr" writing-mode="lr-tb"
+                              baseline-shift="baseline" text-anchor="start" white-space="normal" clip-rule="nonzero"
+                              display="inline" overflow="visible" visibility="visible" opacity="1"
+                              color-interpolation="sRGB" color-interpolation-filters="linearRGB" solid-color="#000000"
+                              solid-opacity="1" fill="#7acbc9" fill-rule="evenodd" stroke-width="1px"
+                              color-rendering="auto" image-rendering="auto" shape-rendering="auto"
+                              text-rendering="auto" />
+                            <path
+                              d="M973.637 3045.946c2.204-.08 4.374 1.25 5.517 3.256l.081.074c1.701-.664 3.655-.541 4.962.71a4.422 4.422 0 0 1 1.082 4.81c-.65 1.67-2.251 2.809-4.081 2.9h-7.324v-.01c-2.81-.091-5.162-2.176-5.601-4.973-.442-2.811 1.174-5.539 3.842-6.485a5.09 5.09 0 0 1 1.52-.289z"
+                              id="path23296-0" inkscape:connector-curvature="0" sodipodi:nodetypes="sccccccccscs"
+                              opacity="1" fill="#c4c9d3" stroke-width="0.99999994" />
+                            <path
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              d="M968.633 3049.589a5.904 5.904 0 0 0-.36 3.123 5.873 5.873 0 0 0 5.602 4.973v.011h6.562a4.946 4.946 0 0 0-1.515-3.982c-1.387-1.327-3.378-1.442-5.143-.863-1.146-1.84-3.06-3.107-5.146-3.262z"
+                              id="path22836-8" inkscape:connector-curvature="0" color="#000" font-style="normal"
+                              font-variant="normal" font-weight="normal" font-stretch="normal" font-size="medium"
+                              font-family="sans-serif" text-decoration="none" letter-spacing="normal"
+                              word-spacing="normal" direction="ltr" writing-mode="lr-tb" baseline-shift="baseline"
+                              text-anchor="start" white-space="normal" clip-rule="nonzero" display="inline"
+                              overflow="visible" visibility="visible" opacity="1" color-interpolation="sRGB"
+                              color-interpolation-filters="linearRGB" solid-color="#000000" solid-opacity="1"
+                              fill="#bbc0c9" fill-rule="nonzero" stroke-width="0.99999994" color-rendering="auto"
+                              image-rendering="auto" shape-rendering="auto" text-rendering="auto" />
+                            <path sodipodi:nodetypes="sccccccccscs" inkscape:connector-curvature="0" id="path23298-4"
+                              d="M968.017 3050.035c2.204-.079 4.374 1.25 5.517 3.257l.08.074c1.702-.665 3.655-.542 4.963.71a4.422 4.422 0 0 1 1.082 4.81c-.65 1.67-2.252 2.808-4.081 2.9h-7.324v-.01c-2.81-.092-5.163-2.176-5.602-4.974-.441-2.811 1.175-5.539 3.843-6.484a5.09 5.09 0 0 1 1.52-.29z"
+                              opacity="1" fill="#e1e1e6" stroke-width="0.99999994" />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <metadata>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                        <rdf:Description about="https://iconscout.com/legal#licenses"
+                          dc:title="clouds,storm,stormy,wind,windy,cloud,forecast"
+                          dc:description="clouds,storm,stormy,wind,windy,cloud,forecast" dc:publisher="Iconscout"
+                          dc:date="2017-09-22" dc:format="image/svg+xml" dc:language="en">
+                          <dc:creator>
+                            <rdf:Bag>
+                              <rdf:li>Vignesh Oviyan</rdf:li>
+                            </rdf:Bag>
+                          </dc:creator>
+                        </rdf:Description>
+                      </rdf:RDF>
+                    </metadata>
+                  </svg>
+                </div>
+                <div class="flex flex-col flex-grow ml-4">
+                  <div class="text-sm text-gray-500">Monday</div>
+                  <div>
+                    <span class="font-bold text-base">12<sup>o</sup>C</span> /
+                    <span class="font-bold text-gray-600 text-base">12<sup>o</sup>C</span>
+                  </div>
+                </div>
+                <div class="text-sm flex items-center text-blue-400">
+                  Clear Sky
+                </div>
+              </div>
+              <div class="flex flex-row  shadow-sm rounded p-4">
+                <div
+                  class="flex items-center justify-center flex-shrink-0 h-12 w-12 rounded-xl bg-blue-100 text-blue-500">
+                  <?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns:dc="http://purl.org/dc/elements/1.1/"
+                    xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                    xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+                    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="32" height="32"
+                    viewBox="0 0 32 32.000001" id="svg13527" version="1.1" inkscape:version="0.91 r13725"
+                    sodipodi:docname="clouds-storm-stormy-wind-windy-cloud-forecast.svg">
+                    <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0"
+                      inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="6.409375"
+                      inkscape:cx="-19.80476" inkscape:cy="17.964544" inkscape:document-units="px"
+                      inkscape:current-layer="layer1" showgrid="true" inkscape:window-width="1366"
+                      inkscape:window-height="716" inkscape:window-x="-8" inkscape:window-y="-8"
+                      inkscape:window-maximized="1" units="px" inkscape:object-nodes="true">
+                      <inkscape:grid type="xygrid" id="grid13559" empspacing="4" />
+                    </sodipodi:namedview>
+                    <g inkscape:label="Layer 1" inkscape:groupmode="layer" id="layer1"
+                      transform="translate(0,-1020.3622)">
+                      <g transform="translate(-958.07801,-2022.7884)" id="g22190-7">
+                        <g id="g22932-9">
+                          <g id="g22855-7" fill-opacity="1" stroke="none" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-miterlimit="4" stroke-dasharray="none" stroke-dashoffset="0" stroke-opacity="1">
+                            <path inkscape:connector-curvature="0" id="path13216-6-5-6"
+                              d="M983.581 3061.362a.5.5 0 1 0 0 1h1c.559 0 1 .442 1 1 0 .55-.426.996-1.003 1h-16.499c-1.099 0-2 .901-2 2 0 1.108.91 1.987 1.994 2a.5.5 0 0 0 .01 0h13.002c.558 0 1 .442 1 1a.991.991 0 0 1-1.002.996h-.998a.5.5 0 1 0 0 1h1c1.108 0 2.003-.91 1.998-2 0-1.099-.901-2-2-2h-12.996c-.565-.01-1.006-.429-1.006-1 0-.558.442-1 1-1h16.503a2.015 2.015 0 0 0 1.996-1.996c0-1.099-.902-2-2-2z"
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              color="#000" font-style="normal" font-variant="normal" font-weight="normal"
+                              font-stretch="normal" font-size="medium" font-family="sans-serif" text-decoration="none"
+                              letter-spacing="normal" word-spacing="normal" direction="ltr" writing-mode="lr-tb"
+                              baseline-shift="baseline" text-anchor="start" white-space="normal" clip-rule="nonzero"
+                              display="inline" overflow="visible" visibility="visible" opacity="1"
+                              color-interpolation="sRGB" color-interpolation-filters="linearRGB" solid-color="#000000"
+                              solid-opacity="1" fill="#7acbc9" fill-rule="evenodd" stroke-width="1px"
+                              color-rendering="auto" image-rendering="auto" shape-rendering="auto"
+                              text-rendering="auto" />
+                            <path inkscape:connector-curvature="0" id="path13216-9-9-06-6"
+                              d="M986.082 3066.363a.5.5 0 1 0 0 1c.558 0 1 .441 1 1a.991.991 0 0 1-1.002.996.5.5 0 1 0 0 1c1.108 0 2.002-.91 1.998-2 0-1.099-.901-2-2-2z"
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              color="#000" font-style="normal" font-variant="normal" font-weight="normal"
+                              font-stretch="normal" font-size="medium" font-family="sans-serif" text-decoration="none"
+                              letter-spacing="normal" word-spacing="normal" direction="ltr" writing-mode="lr-tb"
+                              baseline-shift="baseline" text-anchor="start" white-space="normal" clip-rule="nonzero"
+                              display="inline" overflow="visible" visibility="visible" opacity="1"
+                              color-interpolation="sRGB" color-interpolation-filters="linearRGB" solid-color="#000000"
+                              solid-opacity="1" fill="#7acbc9" fill-rule="evenodd" stroke-width="1px"
+                              color-rendering="auto" image-rendering="auto" shape-rendering="auto"
+                              text-rendering="auto" />
+                            <path inkscape:connector-curvature="0" id="path13216-7-2-29-6"
+                              d="M962.076 3068.362a2.005 2.005 0 0 0-1.998 2.002 2.008 2.008 0 0 0 2 1.998h5.501a.5.5 0 1 0 0-1h-5.5c-.56 0-1-.442-1-1a.993.993 0 0 1 1.001-.998.5.5 0 1 0 0-1z"
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              color="#000" font-style="normal" font-variant="normal" font-weight="normal"
+                              font-stretch="normal" font-size="medium" font-family="sans-serif" text-decoration="none"
+                              letter-spacing="normal" word-spacing="normal" direction="ltr" writing-mode="lr-tb"
+                              baseline-shift="baseline" text-anchor="start" white-space="normal" clip-rule="nonzero"
+                              display="inline" overflow="visible" visibility="visible" opacity="1"
+                              color-interpolation="sRGB" color-interpolation-filters="linearRGB" solid-color="#000000"
+                              solid-opacity="1" fill="#7acbc9" fill-rule="evenodd" stroke-width="1px"
+                              color-rendering="auto" image-rendering="auto" shape-rendering="auto"
+                              text-rendering="auto" />
+                            <path
+                              d="M973.637 3045.946c2.204-.08 4.374 1.25 5.517 3.256l.081.074c1.701-.664 3.655-.541 4.962.71a4.422 4.422 0 0 1 1.082 4.81c-.65 1.67-2.251 2.809-4.081 2.9h-7.324v-.01c-2.81-.091-5.162-2.176-5.601-4.973-.442-2.811 1.174-5.539 3.842-6.485a5.09 5.09 0 0 1 1.52-.289z"
+                              id="path23296-0" inkscape:connector-curvature="0" sodipodi:nodetypes="sccccccccscs"
+                              opacity="1" fill="#c4c9d3" stroke-width="0.99999994" />
+                            <path
+                              style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;text-transform:none;isolation:auto;mix-blend-mode:normal"
+                              d="M968.633 3049.589a5.904 5.904 0 0 0-.36 3.123 5.873 5.873 0 0 0 5.602 4.973v.011h6.562a4.946 4.946 0 0 0-1.515-3.982c-1.387-1.327-3.378-1.442-5.143-.863-1.146-1.84-3.06-3.107-5.146-3.262z"
+                              id="path22836-8" inkscape:connector-curvature="0" color="#000" font-style="normal"
+                              font-variant="normal" font-weight="normal" font-stretch="normal" font-size="medium"
+                              font-family="sans-serif" text-decoration="none" letter-spacing="normal"
+                              word-spacing="normal" direction="ltr" writing-mode="lr-tb" baseline-shift="baseline"
+                              text-anchor="start" white-space="normal" clip-rule="nonzero" display="inline"
+                              overflow="visible" visibility="visible" opacity="1" color-interpolation="sRGB"
+                              color-interpolation-filters="linearRGB" solid-color="#000000" solid-opacity="1"
+                              fill="#bbc0c9" fill-rule="nonzero" stroke-width="0.99999994" color-rendering="auto"
+                              image-rendering="auto" shape-rendering="auto" text-rendering="auto" />
+                            <path sodipodi:nodetypes="sccccccccscs" inkscape:connector-curvature="0" id="path23298-4"
+                              d="M968.017 3050.035c2.204-.079 4.374 1.25 5.517 3.257l.08.074c1.702-.665 3.655-.542 4.963.71a4.422 4.422 0 0 1 1.082 4.81c-.65 1.67-2.252 2.808-4.081 2.9h-7.324v-.01c-2.81-.092-5.163-2.176-5.602-4.974-.441-2.811 1.175-5.539 3.843-6.484a5.09 5.09 0 0 1 1.52-.29z"
+                              opacity="1" fill="#e1e1e6" stroke-width="0.99999994" />
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                    <metadata>
+                      <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+                        xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#" xmlns:dc="http://purl.org/dc/elements/1.1/">
+                        <rdf:Description about="https://iconscout.com/legal#licenses"
+                          dc:title="clouds,storm,stormy,wind,windy,cloud,forecast"
+                          dc:description="clouds,storm,stormy,wind,windy,cloud,forecast" dc:publisher="Iconscout"
+                          dc:date="2017-09-22" dc:format="image/svg+xml" dc:language="en">
+                          <dc:creator>
+                            <rdf:Bag>
+                              <rdf:li>Vignesh Oviyan</rdf:li>
+                            </rdf:Bag>
+                          </dc:creator>
+                        </rdf:Description>
+                      </rdf:RDF>
+                    </metadata>
+                  </svg>
+                </div>
+                <div class="flex flex-col flex-grow ml-4">
+                  <div class="text-sm text-gray-500">Monday</div>
+                  <div>
+                    <span class="font-bold text-base">12<sup>o</sup>C</span> /
+                    <span class="font-bold text-gray-600 text-base">12<sup>o</sup>C</span>
+                  </div>
+                </div>
+                <div class="text-sm flex items-center text-blue-400">
+                  Clear Sky
+                </div>
+              </div> -->
+            <!-- </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</body>
 
 </html>

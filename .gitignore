@@ -3,3 +3,7 @@ node_modules
 .DS_Store
 .vscode
 .idea
+key.js
+.DS_Store
+src/restaurant.html
+src/resource.js

@@ -1,0 +1,102 @@
+@mixin icon($svg) {
+  background-image: $svg;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.uparrow {
+  @include icon(url('../img/up-arrow.svg'));
+}
+
+.down-arrow {
+  @include icon(url('../img/down-arrow.svg'));
+}
+
+.img-01n {
+  @include icon(url('../img/01n.svg'));
+}
+
+.img-01d {
+  @include icon(url('../img/01n.svg'));
+}
+
+.img-03d {
+  @include icon(url('../img/03d_lg.svg'));
+}
+
+.img-04d {
+  @include icon(url('../img/04n.svg'));
+}
+
+.img-04n {
+  @include icon(url('../img/04n.svg'));
+}
+
+.img-03n {
+  @include icon(url('../img/03d_lg.svg'));
+}
+
+.i-01n {
+  @include icon(url('../img/01n.svg'));
+}
+
+.i-03d {
+  @include icon(url('../img/03d.svg'));
+}
+
+.toggle-checkbox:checked {
+  border-color: rgba(52, 211, 153, 1);
+  right: 0;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background-color: rgba(52, 211, 153, 1);
+}
+
+.img-02n {
+  @include icon(url('../img/02n.svg'));
+}
+
+.img-02d {
+  @include icon(url('../img/02n.svg'));
+}
+
+.img-13d {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-13n {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-50n {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-50d {
+  @include icon(url('../img/01d.svg'));
+}
+
+.img-11d {
+  @include icon(url('../img/11d.svg'));
+}
+
+.img-11n {
+  @include icon(url('../img/11d.svg'));
+}
+
+.img-10d {
+  @include icon(url('../img/10d.svg'));
+}
+
+.img-10n {
+  @include icon(url('../img/10d.svg'));
+}
+
+.img-09d {
+  @include icon(url('../img/09d.svg'));
+}
+
+.img-09n {
+  @include icon(url('../img/09d.svg'));
+}
